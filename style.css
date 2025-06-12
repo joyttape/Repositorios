@@ -1,0 +1,352 @@
+/* CONFIGURAÇÕES GERAIS DO BODY */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* CENTRALIZA E ORGANIZA A ÁREA PRINCIPAL */
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  padding: 80px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ÁREA DO VINIL */
+.vinyl-area {
+  position: relative;
+  width: 390px;
+  height: 390px;
+}
+
+.vinyl {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(#222 30%, #000 70%);
+  animation: spin 5s linear infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.center-label {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  border: 4px solid white;
+  
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ÁREA DO TEXTO */
+.text-area {
+  max-width: 400px;
+  align-items: center;
+  gap: 10px;
+}
+
+.note {
+  background: #cdeef8;
+  border-radius: 12px;
+  padding: 30px;
+  color: #222;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: justify;
+  margin-bottom: 20px;
+}
+
+.note h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  font-family: 'Patrick Hand', cursive;
+}
+
+.note p {
+  white-space: pre-wrap;
+  margin: 15px 0;
+  font-family: 'Patrick Hand', cursive;
+}
+
+button {
+  background: black;
+  border: none;
+  padding: 10px 40px;
+  color: white;
+  font-size: 1rem;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+/* GALERIA DE IMAGENS */
+.gallery-image {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* CADA BLOCO DE IMAGEM */
+.img-box {
+  box-sizing: content-box;
+  margin: 10px;
+  height: 350px;
+  width: 350px;
+  overflow: hidden;
+  display: inline-block;
+  color: white;
+  position: relative;
+  background-color: white;
+}
+
+/* IMAGENS */
+.gallery-image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* EFEITO DE LEVE ZOOM */
+.img-box:hover img {
+  transform: scale(1.1);
+}
+
+/* BOX TRANSPARENTE AO HOVER */
+.transparent-box {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: background-color 0.3s ease;
+}
+
+.img-box:hover .transparent-box {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* LEGENDA DAS FOTOS */
+.caption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.img-box:hover .caption {
+  transform: translateY(-20px);
+  opacity: 1;
+}
+
+.caption > p:nth-child(2) {
+  font-size: 0.8em;
+}
+
+.opacity-low {
+  opacity: 0.5;
+}
+
+.img-box:hover {
+  cursor: pointer;
+}
+
+/* CORAÇÕES ANIMADOS AO PASSAR O MOUSE */
+.img-box::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  background-image: url('./coracao.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.img-box:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  animation: floatHearts 1.5s ease forwards;
+}
+
+@keyframes floatHearts {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -70%) scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -100%) scale(1.4);
+    opacity: 0;
+  }
+}
+
+#heart-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.heart-fall {
+  position: absolute;
+  top: -50px;
+  animation: fall linear forwards;
+}
+
+.heart-fall img {
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.texto {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  position: relative;
+  line-height: 1.8;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.carta-com-imagens {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  margin: 60px auto;
+  flex-wrap: wrap;
+}
+
+.coluna-esquerda,
+.coluna-direita {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.coluna-esquerda img,
+.coluna-direita img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.coluna-esquerda img:hover,
+.coluna-direita img:hover {
+  transform: scale(1.05);
+}
+
+.cartinha-area {
+  max-width: 600px;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.cartinha {
+  background-image: repeating-linear-gradient(to bottom, transparent 0px, transparent 23px, #d9d9d9 24px);
+  padding: 40px 20px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.1rem;
+  color: #333;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.cartinha h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #c0392b;
+}
+
+.cartinha-area iframe {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  border: none;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .carta-com-imagens {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .coluna-esquerda,
+  .coluna-direita {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .coluna-esquerda img,
+  .coluna-direita img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+}
